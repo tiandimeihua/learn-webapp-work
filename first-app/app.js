@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", cherryRouter);
-app.use("index", indexRouter);
+app.use("/index", indexRouter);
 app.use("/users", usersRouter);
 // make the router and view page connect
 app.use("/posts", postsRouter);
