@@ -84,4 +84,4 @@ typings/
 .dynamodb/
 
 # first-app tmp change file
-.first-app/
+first-app/
