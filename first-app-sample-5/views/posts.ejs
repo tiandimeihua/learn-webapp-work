@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <h1>
+      <%= title %>
+    </h1>
+
+    <p>
+      welcome to <%= title %> page.
+    </p>
+    <div>
+      <p>
+        This is show postList by express.js at backend ready for html.
+      </p>
+
+      <ul>
+        <% for (let i = 0;i < postList.length;++i){ %>
+        <li>
+          <%= postList[i] %>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <div id="app">
+      <p>
+        This is show html by express.js support data, then create html by
+        client.
+      </p>
+      <p v-for="item in postsList">{{ item }}</p>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        postsList: []
+      },
+      methods: {
+        fetchData() {
+          axios
+            .get("http://localhost:3000/posts/lists")
+            .then(function(response) {
+              // handle success
+              app.postsList = response.data.postsList;
+            });
+        }
+      }
+    });
+    app.fetchData();
+  </script>
+</html>
